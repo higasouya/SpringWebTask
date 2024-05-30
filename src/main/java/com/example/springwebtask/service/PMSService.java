@@ -1,5 +1,6 @@
 package com.example.springwebtask.service;
 
+import com.example.springwebtask.entity.Category;
 import com.example.springwebtask.entity.LoginForm;
 import com.example.springwebtask.entity.Product;
 import com.example.springwebtask.entity.User;
@@ -25,4 +26,16 @@ public class PMSService implements IPMSService{
 
     @Override
     public List<Product> findByKeyword(String keyword){ return pmsRepository.findByKeyword(keyword);}
+
+    @Override
+    public Product findById(int id){ return  pmsRepository.findById(id);}
+
+    @Override
+    public List<Category> findCategory(){ return pmsRepository.findCategory();}
+
+    @Override
+    public int insert(Product product){ return pmsRepository.insert(product);}
+
+    @Override
+    public int update(Product product){ return pmsRepository.update(product);}
 }

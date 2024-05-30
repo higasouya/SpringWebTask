@@ -1,5 +1,6 @@
 package com.example.springwebtask.service;
 
+import com.example.springwebtask.entity.Category;
 import com.example.springwebtask.entity.LoginForm;
 import com.example.springwebtask.entity.Product;
 import com.example.springwebtask.entity.User;
@@ -12,4 +13,12 @@ public interface IPMSService {
     List<Product> findAll();
 
     List<Product> findByKeyword(String name);
+
+    Product findById(int id);
+
+    List<Category> findCategory();
+
+    int insert(Product product);
+
+    int update(Product product);
 }
