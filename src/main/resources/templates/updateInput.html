@@ -16,6 +16,7 @@
       <p class="error">エラーメッセージ</p>
 
       <form action="update" method="post" th:object="${Products}">
+        <input type="hidden" th:field="*{id}">
         <fieldset class="label-130">
           <div>
             <label>商品ID</label>

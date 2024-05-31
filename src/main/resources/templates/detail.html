@@ -44,11 +44,11 @@
         </fieldset>
         <div>
           <div class="btns">
-            <input type="button" onclick="openModal()" value="削除" class="basic-btn">
+            <input type="button" class="basic-btn" data-toggle="modal" data-target="#deleteModal" value="削除">
             <a th:href="@{/updateInput(id=${product.id})}"><input type="button" value="編集" class="basic-btn"></a>
             <a th:href="@{/menu}"><input type="button"  value="戻る" class="cancel-btn"></a>
           </div>
-          <div id="modal">
+          <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
             <p class="modal-message">削除しますか？</p>
             <div class="btns">
               <button type="button" id="delete-btn" class="basic-btn">削除</button>

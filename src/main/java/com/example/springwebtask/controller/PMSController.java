@@ -102,9 +102,9 @@ public class PMSController {
     }
 
     @PostMapping("/update")
-    public String updateSuc(@ModelAttribute("Product") Product product, Model model){
-//        System.out.println(product.getName());
-        pmsService.update(product);
+    public String updateSuc(@ModelAttribute("Products") Product product, Model model){
+        System.out.println(product);
+        System.out.println(pmsService.update(product));
         return "success";
     }
 
