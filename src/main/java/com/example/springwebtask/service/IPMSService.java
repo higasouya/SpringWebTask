@@ -21,4 +21,6 @@ public interface IPMSService {
     int insert(Product product);
 
     int update(Product product);
+
+    int delete(int id);
 }

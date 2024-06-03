@@ -38,4 +38,7 @@ public class PMSService implements IPMSService{
 
     @Override
     public int update(Product product){ return pmsRepository.update(product);}
+
+    @Override
+    public int delete(int id){ return pmsRepository.delete(id);}
 }

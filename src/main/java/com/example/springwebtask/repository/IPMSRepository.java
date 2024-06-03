@@ -22,4 +22,6 @@ public interface IPMSRepository {
     int insert(Product product);
 
     int update(Product product);
+
+    int delete(int id);
 }

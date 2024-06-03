@@ -5,12 +5,14 @@ import com.example.springwebtask.entity.LoginForm;
 import com.example.springwebtask.entity.Product;
 import com.example.springwebtask.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.DataClassRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.sql.SQLException;
 import java.util.List;
 
 @Repository
@@ -65,13 +67,15 @@ public class PMSRepository implements IPMSRepository{
 
     @Override
     public int insert(Product product){
-        var param = new MapSqlParameterSource();
-        param.addValue("product_id", product.getProduct_id());
-        param.addValue("name", product.getName());
-        param.addValue("price", product.getPrice());
-        param.addValue("category_id",product.getCategory_name());
-        param.addValue("description",product.getDescription());
-        return jdbcTemplate.update("INSERT INTO products (product_id,name,price,category_id,description) VALUES(:product_id, :name, :price, CAST(:category_id AS integer), :description)", param);
+            var param = new MapSqlParameterSource();
+            param.addValue("product_id", product.getProduct_id());
+            param.addValue("name", product.getName());
+            param.addValue("price", product.getPrice());
+            param.addValue("category_id",product.getCategory_name());
+            param.addValue("description",product.getDescription());
+            return jdbcTemplate.update("INSERT INTO products (product_id,name,price,category_id,description) VALUES(:product_id, :name, :price, CAST(:category_id AS integer), :description)", param);
+
+
     }
 
     @Override
@@ -84,6 +88,14 @@ public class PMSRepository implements IPMSRepository{
         param.addValue("category_id", product.getCategory_name());
 
         return jdbcTemplate.update("UPDATE products SET product_id = :product_id, name = :name, price = :price, category_id = CAST(:category_id AS integer) WHERE id = :id", param);
+    }
+
+    @Override
+    public int delete(int id){
+        var param = new MapSqlParameterSource();
+        param.addValue("product_id", id);
+        return jdbcTemplate.update("DELETE FROM products WHERE CAST(product_id AS integer)= :product_id", param);
+
     }
 
 

@@ -21,14 +21,23 @@
           <div>
             <label>商品ID</label>
             <input type="text"  th:field="*{product_id}" class="base-text">
+            <div class="error" th:each="error: ${#fields.errors('product_id')}">
+              [[ ${error} ]]
+            </div>
           </div>
           <div>
             <label>商品名</label>
             <input type="text"  th:field="*{name}" class="base-text">
+            <div class="error" th:each="error: ${#fields.errors('name')}">
+              [[ ${error} ]]
+            </div>
           </div>
           <div>
             <label>単価</label>
             <input type="text" th:field="*{price}" class="base-text">
+            <div class="error" th:each="error: ${#fields.errors('price')}">
+              [[ ${error} ]]
+            </div>
           </div>
           <div>
             <label>カテゴリ</label>
@@ -50,7 +59,7 @@
           <div>
             <label>画像</label>
             <input type="file" name="file">
-            <span class="error">エラーメッセージ</span>
+<!--            <span class="error">エラーメッセージ</span>-->
           </div>
         </fieldset>
           <div class="btns">

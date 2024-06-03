@@ -19,9 +19,10 @@
     </div>
   
     <div class="form-body">
-      <p class="error">エラーメッセージ</p>
+
   
       <form action="insert" method="post" th:object="${Product}">
+        <p class="error" th:if="${error} != null"> [[ ${error} ]] </p>
         <fieldset class="label-130">
           <div>
             <label class="required">商品ID</label>

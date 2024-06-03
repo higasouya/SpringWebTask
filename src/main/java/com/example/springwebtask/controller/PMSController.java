@@ -71,6 +71,10 @@ public class PMSController {
             model.addAttribute("error", "入力値が不正です");
             return "insert";
         }
+        if(pmsService.findById(product.getProduct_id()) != null){
+            model.addAttribute("error", "商品IDが重複しています。");
+            return "insert";
+        }
         var insertProduct = new Product();
         insertProduct.setId(1);
         insertProduct.setProduct_id(product.getProduct_id());
@@ -102,12 +106,25 @@ public class PMSController {
     }
 
     @PostMapping("/update")
-    public String updateSuc(@ModelAttribute("Products") Product product, Model model){
+    public String updateSuc(@Validated @ModelAttribute("Products") Product product,BindingResult bindingResult, Model model){
+        if(bindingResult.hasErrors()) {
+            model.addAttribute("error", "入力値が不正です");
+            return "insert";
+        }
+        if(pmsService.findById(product.getProduct_id()) != null){
+            model.addAttribute("error", "商品IDが重複しています。");
+            return "insert";
+        }
         System.out.println(product);
         System.out.println(pmsService.update(product));
         return "success";
     }
 
+    @GetMapping("/detail/delete/{product_id}")
+    public String delete(@PathVariable("product_id")int id){
+        pmsService.delete(id);
+        return "success";
+    }
 
 
 }

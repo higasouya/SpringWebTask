@@ -12,7 +12,7 @@
 
     <hr>
 
-    <div class="btn-area">
+    <div class="btn-area" th:if="${session.user.role} == 1" >
       <div class="btn"><a class="basic-btn regist" th:href="insert">新規登録</a></div>
       <div class="btn"><a class="basic-btn regist" href="category.html">カテゴリ管理</a></div>
     </div>
